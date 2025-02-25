@@ -5,11 +5,10 @@ import SendIcon from "@mui/icons-material/Send";
 import {sendMarketingMessage} from '@services/api';
 
 const SendMessageButton  = (props) => {
-    const {inputValues, setInputError, isLoading, setIsLoading, inputError} = props;
+    const {headerInputValues, isLoading, setIsLoading, inputError, setInputError, bodyInputValues, footerInputValues} = props;
     const sendMessage = async () => {
-        const payload = Object.fromEntries(
-            Object.entries(inputValues).filter(([_, value]) => value !== "")
-        );
+        const payload = {...headerInputValues, ...bodyInputValues, ...footerInputValues};
+        
         if (!payload?.body) {
             setInputError(true);
             return;
@@ -51,7 +50,9 @@ const SendMessageButton  = (props) => {
 }
 
 SendMessageButton.propTypes = {
-    inputValues: PropTypes.object.isRequired,
+    headerInputValues: PropTypes.object.isRequired,
+    bodyInputValues: PropTypes.object.isRequired,
+    footerInputValues: PropTypes.object.isRequired,
     setInputError: PropTypes.func.isRequired,
     isLoading: PropTypes.bool.isRequired,
     setIsLoading: PropTypes.func.isRequired,

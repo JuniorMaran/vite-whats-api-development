@@ -1,18 +1,15 @@
-import {useState} from "react";
 import PropTypes from "prop-types";
 import { TextField } from "@mui/material";
 import BodyMarketingLabel from "@components/BodyMarketing/components/BodyMarketingLabel";
 
 const BodyMarketing = (props) => {
-    const { inputValues, setInputValues, inputError, setInputError} = props;
-    const [variables, setVariables] = useState({});
-    console.log('variables', variables);
+    const {bodyInputValues, setBodyInputValues, inputError, setInputError} = props;
     
     const handleInputChange = (type, event) => {
         const value = event.target.value;
 
         setInputError(value.trim() === "");
-        setInputValues((prev) => ({
+        setBodyInputValues((prev) => ({
             ...prev,
             [type.toLowerCase()]: value,
         }));
@@ -20,17 +17,18 @@ const BodyMarketing = (props) => {
 
     const handleUpdateVariable = (event) => {
         const value = event.target.value;
-        const matches = value.match(/{{\d+}}/g) || [];
-
-        setVariables((prevVars) => {
-            const newVars = { ...prevVars };
-            matches.forEach((match) => {
-                if (!(match in newVars)) {
-                    newVars[match] = '';
-                }
-            });
-            return newVars;
+        const matches = value.match(/{{(.+?)}}/g) || [];
+        
+        const existingVariables = { ...bodyInputValues?.buttonVariables };
+        const newVariables = {};
+        
+        matches.forEach(match => {
+            newVariables[match] = existingVariables[match] || "";
         });
+        setBodyInputValues(prevState => ({
+            ...prevState,
+            buttonVariables: newVariables
+        }));
     };
 
     return (
@@ -47,7 +45,7 @@ const BodyMarketing = (props) => {
                 // defaultValue="Default Value"
                 variant="filled"
                 error={inputError}
-                value={inputValues.body}
+                value={bodyInputValues?.body}
                 onChange={(e) => {
                     handleInputChange("body", e);
                     handleUpdateVariable(e);
@@ -55,12 +53,12 @@ const BodyMarketing = (props) => {
                 helpertext={inputError ? "Este campo é obrigatório." : ""}
                 required
             />
-            {Object.entries(variables).map(([variableKey, variableValue]) => (
+            {bodyInputValues && Object.entries(bodyInputValues.buttonVariables).map(([variableKey, variableValue]) => (
                 <BodyMarketingLabel 
                     key={variableKey}
                     variableKey={variableKey}
                     variableValue={variableValue}
-                    setVariables={setVariables} 
+                    setBodyInputValues={setBodyInputValues} 
                     inputError={inputError} 
                     setInputError={setInputError} 
                 />
@@ -71,8 +69,8 @@ const BodyMarketing = (props) => {
 };
 
 BodyMarketing.propTypes = {
-    inputValues: PropTypes.object.isRequired,
-    setInputValues: PropTypes.func.isRequired,
+    bodyInputValues: PropTypes.object.isRequired,
+    setBodyInputValues: PropTypes.func.isRequired,
     inputError: PropTypes.bool.isRequired,
     setInputError: PropTypes.func.isRequired,
 };
