@@ -6,31 +6,29 @@ import SendMessageButton from "@components/SendMessageButton";
 import AddButton from "@components/AddButton";
 
 const MarketingMessage = () => {
-    const [inputValues, setInputValues] = useState({
-        text: "",
-        id: "",
-        localizacao: "",
-        body: "",
-        footer: "",
-    });
-
+    const [headerInputValues, setHeaderInputValues] = useState();
+    const [bodyInputValues, setBodyInputValues] = useState();
+    const [footerInputValues, setFooterInputValues] = useState();
     const [isLoading, setIsLoading] = useState(false);
     const [inputError, setInputError] = useState(false);
 
     return (
         <>
-            <HeaderMarketing                 
-                inputValues={inputValues}
-                setInputValues={setInputValues}
+            <HeaderMarketing
+                headerInputValues={headerInputValues}
+                setHeaderInputValues={setHeaderInputValues}
                 setIsLoading={setIsLoading}
             />
             <BodyMarketing
-                inputValues={inputValues}
-                setInputValues={setInputValues}
+                bodyInputValues={bodyInputValues}
+                setBodyInputValues={setBodyInputValues}
                 inputError={inputError}
                 setInputError={setInputError}
             />
-            <FooterMarketing inputValues={inputValues} setInputValues={setInputValues} />
+            <FooterMarketing 
+                footerInputValues={footerInputValues} 
+                setFooterInputValues={setFooterInputValues} 
+            />
             <AddButton 
                 inputError={inputError}
                 setInputError={setInputError}
@@ -40,7 +38,10 @@ const MarketingMessage = () => {
                 isLoading={isLoading}
                 inputError={inputError}
                 setInputError={setInputError}
-                inputValues={inputValues}
+                headerInputValues={headerInputValues}
+                bodyInputValues={bodyInputValues}
+                footerInputValues={footerInputValues}
+                
             />
         </>
     );

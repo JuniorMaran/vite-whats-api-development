@@ -16,7 +16,6 @@ const CancelMarketingLabel = (props) => {
 
   const handleInputChange = (type, event) => {
     const value = event.target.value;
-    console.log(value);
     setInputError(value.trim() === "");
 
     setButtonValues((prev) => ({

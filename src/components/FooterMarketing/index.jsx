@@ -2,11 +2,11 @@ import PropTypes from "prop-types";
 import { TextField } from "@mui/material";
 
 const FooterMarketing = (props) => {
-    const { inputValues, setInputValues } = props;
+    const { footerInputValues, setFooterInputValues } = props;
     const handleInputChange = (type, event) => {
         const value = event.target.value;
 
-        setInputValues((prev) => ({
+        setFooterInputValues((prev) => ({
             ...prev,
             [type.toLowerCase()]: value,
         }));
@@ -24,15 +24,15 @@ const FooterMarketing = (props) => {
             rows={4}
             // defaultValue="Default Value"
             variant="filled"
-            value={inputValues.footer}
+            value={footerInputValues?.footer}
             onChange={(e) => handleInputChange("footer", e)}
         />
     );
 };
 
 FooterMarketing.propTypes = {
-    inputValues: PropTypes.object.isRequired,
-    setInputValues: PropTypes.func.isRequired,
+    footerInputValues: PropTypes.object.isRequired,
+    setFooterInputValues: PropTypes.func.isRequired,
 };
 
 export default FooterMarketing;

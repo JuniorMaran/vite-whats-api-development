@@ -2,14 +2,16 @@ import PropTypes from "prop-types";
 import { TextField } from "@mui/material";
 
 const Text = (props) => {
-    const { inputValues, setInputValues } = props;
+    const { headerInputValues, setHeaderInputValues } = props;
 
     const handleInputChange = (type, event) => {
         const value = event.target.value;
-
-        setInputValues((prev) => ({
+        setHeaderInputValues((prev) => ({
             ...prev,
-            [type.toLowerCase()]: value,
+            header: {
+                [type.toLowerCase()]: value,
+            }
+
         }));
     };
 
@@ -22,15 +24,15 @@ const Text = (props) => {
             label="Digite o texto"
             variant="outlined"
             fullWidth
-            value={inputValues.text}
+            value={headerInputValues?.text}
             onChange={(e) => handleInputChange("text", e)}
         />
     );
 };
 
 Text.propTypes = {
-    inputValues: PropTypes.object.isRequired,
-    setInputValues: PropTypes.func.isRequired,
+    headerInputValues: PropTypes.object.isRequired,
+    setHeaderInputValues: PropTypes.func.isRequired,
 };
 
 export default Text;

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import PropTypes from "prop-types";
 import {
   FormControl,
   Select,
@@ -94,6 +95,11 @@ const AddButton = (props) => {
       ))}
     </>
   );
+};
+
+AddButton.propTypes = {
+  inputError: PropTypes.bool.isRequired,
+  setInputError: PropTypes.func.isRequired,
 };
 
 export default AddButton;

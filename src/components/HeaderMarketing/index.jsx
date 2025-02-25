@@ -1,5 +1,6 @@
-import React, { useState } from "react";
 
+import { useState } from "react";
+import PropTypes from "prop-types";
 import {
     FormControl,
     InputLabel,
@@ -8,21 +9,20 @@ import {
     TextField
 } from "@mui/material";
 
-
 import Video from "@components/HeaderMarketing/components/Video";
 import Image from "@components/HeaderMarketing/components/Image";
 import Text from "@components/HeaderMarketing/components/Text";
 import File from "@components/HeaderMarketing/components/File";
 
 const HeaderMarketing = (props) => {
-    const {inputValues, setInputValues, setIsLoading} = props;
+    const {headerInputValues, setHeaderInputValues, setIsLoading} = props;
     const [headerType, setHeaderType] = useState("Nenhum");
  
     const handleInputChange = (type, event) => {
         const value = event.target.value;
         const files = event.target.files;
 
-        setInputValues((prev) => ({
+        setHeaderInputValues((prev) => ({
             ...prev,
             [type.toLowerCase()]: files ? files[0] : value,
         }));
@@ -33,31 +33,31 @@ const HeaderMarketing = (props) => {
             case "text":
                 return (
                     <Text
-                        inputValues={inputValues}
-                        setInputValues={setInputValues}
+                        headerInputValues={headerInputValues}
+                        setHeaderInputValues={setHeaderInputValues}
                     />
                 );
             case "image":
                 return (
                     <Image
-                        inputValues={inputValues}
-                        setInputValues={setInputValues}
+                        headerInputValues={headerInputValues}
+                        setHeaderInputValues={setHeaderInputValues}
                         setIsLoading={setIsLoading}
                     />
                 );
             case "video":
                 return (
                     <Video
-                        inputValues={inputValues}
-                        setInputValues={setInputValues}
+                        headerInputValues={headerInputValues}
+                        setHeaderInputValues={setHeaderInputValues}
                         setIsLoading={setIsLoading}
                     />
                 );
             case "file":
                 return (
                     <File
-                        inputValues={inputValues}
-                        setInputValues={setInputValues}
+                        headerInputValues={headerInputValues}
+                        setHeaderInputValues={setHeaderInputValues}
                         setIsLoading={setIsLoading}
                     />
                 );
@@ -67,7 +67,7 @@ const HeaderMarketing = (props) => {
                         label="Digite a localização"
                         variant="outlined"
                         fullWidth
-                        value={inputValues.localizacao}
+                        value={headerInputValues.localizacao}
                         onChange={(e) => handleInputChange("Localizacao", e)}
                     />
                 );
@@ -111,6 +111,12 @@ const HeaderMarketing = (props) => {
 
         </>
     );
+};
+
+HeaderMarketing.propTypes = {
+    headerInputValues: PropTypes.object.isRequired,
+    setHeaderInputValues: PropTypes.func.isRequired,
+    setIsLoading: PropTypes.func.isRequired,
 };
 
 export default HeaderMarketing;
