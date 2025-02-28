@@ -27,12 +27,10 @@ const CancelMarketingLabel = (props) => {
     <Typography
       variant="div"
       sx={{
-        m: 1,
-        p: 3,
         display: "flex",
         flexDirection: "column",
         backgroundColor: "#f5f5f5",
-        width: { xs: "100%", sm: "80%", md: "60%", lg: "50%" },
+        width: "100%",
       }}
     >
       <Typography variant="subtitle1" sx={{ mt: 2, fontSize: "14px" }}>
@@ -50,9 +48,10 @@ const CancelMarketingLabel = (props) => {
         sx={{
           p: "2px 4px",
           display: "flex",
-          alignItems: "center",
-          width: 400,
+          alignSelf: "center",
+          width: "80%",
           flexDirection: "row",
+          marginBottom: "10px",
         }}
       >
         <InputBase

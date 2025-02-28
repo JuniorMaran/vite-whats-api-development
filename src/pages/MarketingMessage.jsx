@@ -1,4 +1,7 @@
 import { useState } from "react";
+import {
+    Typography
+} from "@mui/material";
 import HeaderMarketing from "@components/HeaderMarketing";
 import BodyMarketing from "@components/BodyMarketing";
 import FooterMarketing from "@components/FooterMarketing";
@@ -13,7 +16,14 @@ const MarketingMessage = () => {
     const [inputError, setInputError] = useState(false);
 
     return (
-        <>
+        <Typography className="container-marketingmessage" variant="div" 
+            sx={{
+                display: "flex", 
+                flexDirection: "column",
+                justifySelf: "center", 
+                width: { xs: "100%", sm: "80%", md: "60%", lg: "50%" } 
+                }}
+            >
             <HeaderMarketing
                 headerInputValues={headerInputValues}
                 setHeaderInputValues={setHeaderInputValues}
@@ -29,10 +39,10 @@ const MarketingMessage = () => {
                 footerInputValues={footerInputValues} 
                 setFooterInputValues={setFooterInputValues} 
             />
-            <AddButton 
+            {/* <AddButton 
                 inputError={inputError}
                 setInputError={setInputError}
-            />
+            /> */}
             <SendMessageButton
                 setIsLoading={setIsLoading}
                 isLoading={isLoading}
@@ -43,7 +53,7 @@ const MarketingMessage = () => {
                 footerInputValues={footerInputValues}
                 
             />
-        </>
+        </Typography>
     );
 };
 

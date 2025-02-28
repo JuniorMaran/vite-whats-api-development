@@ -6,9 +6,11 @@ import {
     InputLabel,
     Select,
     MenuItem,
-    TextField
+    TextField,
+    Typography
 } from "@mui/material";
 
+import InfoLabelsTitle from "@components/Shared/InfoLabelsTitle";
 import Video from "@components/HeaderMarketing/components/Video";
 import Image from "@components/HeaderMarketing/components/Image";
 import Text from "@components/HeaderMarketing/components/Text";
@@ -78,16 +80,19 @@ const HeaderMarketing = (props) => {
 
     return (
         <>
+            <InfoLabelsTitle 
+                subtitle1="Cabeçalho para sua mensagem de marketing"
+                subtitle2={`Adicione um cabeçalho (opcional) para sua mensagem de marketing. \n Esse campo pode conter um texto, uma imagem, um vídeo ou um documento. \n Todos os outros campos aceitarão apenas texto.`}
+            />
+
             <FormControl
                 variant="filled"
                 sx={{
-                    width: { xs: "100%", sm: "80%", md: "60%", lg: "50%" },
-                    m: 1,
+                    width: "100%",
                 }}
             >
                 <InputLabel
                     id="demo-simple-select-helper-label"
-                    className="pb-5"
                 >
                     Cabeçalho (Opcional)
                 </InputLabel>
@@ -97,6 +102,9 @@ const HeaderMarketing = (props) => {
                     value={headerType}
                     label="Header"
                     onChange={(e) => setHeaderType(e.target.value)}
+                    sx={{
+                        marginBottom: 1,
+                    }}
                 >
                     <MenuItem value="Nenhum">Nenhum</MenuItem>
                     <MenuItem value="text">Texto</MenuItem>

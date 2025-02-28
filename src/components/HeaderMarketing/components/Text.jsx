@@ -18,8 +18,9 @@ const Text = (props) => {
     return (
         <TextField
             sx={{
-                width: { xs: "100%", sm: "80%", md: "60%", lg: "50%" },
-                m: 1,
+                width: "100%",
+                marginLeft: 1,
+                marginBottom: 5,
             }}
             label="Digite o texto"
             variant="outlined"

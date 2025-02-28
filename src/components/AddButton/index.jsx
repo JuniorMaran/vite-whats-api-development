@@ -33,7 +33,7 @@ const AddButton = (props) => {
     <>
     <FormControl
       variant="filled"
-      sx={{ width: { xs: "100%", sm: "80%", md: "60%", lg: "50%" }, m: 1 }}
+      sx={{ width: "100%" }}
     >
       <InputLabel id="dropdown-label">
         <Box display="flex" alignItems="center" gap={1}>
